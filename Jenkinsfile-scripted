@@ -1,0 +1,9 @@
+node {
+    stage('Clone Repository') { checkout scm }
+    stage('Build') { echo "Build step running..." }
+    stage('Echo Build Status') { echo "Scripted pipeline OK!" }
+    stage('Archive Artifacts') {
+        bat 'mkdir output & echo scripted > output\\scripted.txt'
+        archiveArtifacts artifacts: 'output/*.txt'
+    }
+}
